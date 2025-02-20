@@ -1,0 +1,70 @@
+import math
+
+#Al llarg del programa s'utilitzaran graus per definir els angles, pero per fer els càlculs es passaran a radians
+#Per defecte, angle serà en radians, i angle_graus en graus. Es retorna tot en graus. 
+def graus_to_radians(x):
+    return x* 2 * math.pi / 360
+
+def radians_to_graus(x):
+    return x*360 / (2 * math.pi)
+
+
+def pitagoras(a, b):
+    hipotenusa_2 = a**2 + b**2
+    hipotenusa = math.sqrt(hipotenusa_2)
+
+    return hipotenusa
+
+
+def polar_to_binomial(modul, angle_graus):
+    angle = graus_to_radians(angle_graus)
+    return str(modul* math.cos(angle)) + str(modul*math.sin(angle)) + "j"
+    
+
+def binomial_to_polar(real_part, im_part):
+
+    angle = math.atan(im_part/real_part)
+    modul = pitagoras(real_part, im_part)
+    angle_graus = radians_to_graus(angle)
+
+    return str(modul) + "<" + str(angle_graus) + "º"
+
+def argument(a, b):
+    angle = math.atan(b/a)
+    angle_graus = radians_to_graus(angle)
+
+    return angle_graus
+
+def potencia_activa(V, I, angle_graus):
+    angle = graus_to_radians(angle_graus)
+    return V * I * math.cos(angle)
+
+def potencia_reactiva(V, I, angle_graus):
+    angle = graus_to_radians(angle_graus)
+    return V * I * math.sin(angle)
+
+def potencia_aparent_pitagoras(P, Q):
+    VAr = pitagoras (P,Q)
+    return VAr
+def potencia_aparent(V,I):
+    return V*I
+
+def potencies(V, I, angle_graus):
+
+    P = potencia_activa(V, I, angle_graus)
+    Q = potencia_reactiva(V, I, angle_graus)
+    Sp = potencia_aparent_pitagoras(P, Q)
+    
+
+    print ("Potencia activa:", P, "W")
+    print ("Potencia reactiva:", Q, "VAr") 
+    print ("Potencia aparent", Sp, "VA")
+
+
+
+angle_graus = argument(25, 3.03)
+
+print(binomial_to_polar(25, 3.03))
+print(argument(25, 3.03))
+
+potencies(14.45, 4.77, angle_graus)
