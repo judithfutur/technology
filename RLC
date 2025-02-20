@@ -60,7 +60,10 @@ def potencies(V, I, angle_graus):
     print ("Potencia reactiva:", Q, "VAr") 
     print ("Potencia aparent", Sp, "VA")
 
+def reactancia_inductiva(f, L):
+    return 2* math.pi * f * L
 
+print(reactancia_inductiva(0.35, 6))
 
 angle_graus = argument(25, 3.03)
 
